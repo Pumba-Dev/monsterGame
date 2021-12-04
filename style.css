@@ -41,6 +41,7 @@ html {
 
 .health-bar {
     height: 100%;
+    transition: width 2s;
 }
 
 .health-percent {
