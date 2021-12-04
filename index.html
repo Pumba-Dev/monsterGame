@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Matador de Monstro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600" rel="stylesheet">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Health Container -->
+        <section class="container">
+             <div class="score">
+                <p class="player-name">Player</p>
+                <div class="health-container">
+                    <div 
+                        :style= "{
+                            width: healthPlayer + '%', 
+                            'background-color': barColorPlayer
+                        }" 
+                        class="health-bar">
+                    </div>
+                </div>
+                <p class= "health-percent"> {{ healthPlayer }} </p>
+             </div>
+             <div class="score">
+                <p class="player-name">Monster</p>
+                <div class="health-container">
+                    <div 
+                        :style="{
+                            width: healthMonster + '%', 
+                            'background-color': barColorMonster
+                        }" 
+                        class="health-bar">
+                    </div>
+                </div>
+                <p class= "health-percent"> {{ healthMonster }} </p>
+            </div>
+        </section>
+        <!-- GameOver Container -->
+        <section v-if="endGame" class="container"> 
+            <p :style="{color: gameOverColor}"  class="game-over"> {{ gameOverMSG }} </p>
+        </section>
+        <!-- Buttons Container -->
+        <section class="container"> 
+            <button @click="newGame" v-if="!gameOn" class="btn-newgame"> NEW GAME </button>
+            <div v-if="gameOn" >
+                <button @click="attack" class="btn-attack"> ATTACK dalla </button>
+                <button @click="specialAttack" class="btn-special-attack"> SPECIAL ATTACK </button>
+                <button class="btn-heal"> HEAL </button>
+                <button class="btn-run"> RUN </button>
+            </div>
+        </section>
+        <section class="container"> Log </section>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
