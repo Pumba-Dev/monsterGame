@@ -43,15 +43,20 @@
         </section>
         <!-- Buttons Container -->
         <section class="container"> 
-            <button @click="newGame" v-if="!gameOn" class="btn-newgame"> NEW GAME </button>
+            <button @click="newGame" v-if="!gameOn" class="btn btn-newgame"> NEW GAME </button>
             <div v-if="gameOn" >
-                <button @click="attack" class="btn-attack"> ATTACK dalla </button>
-                <button @click="specialAttack" class="btn-special-attack"> SPECIAL ATTACK </button>
-                <button class="btn-heal"> HEAL </button>
-                <button class="btn-run"> RUN </button>
+                <button @click="attack" class="btn btn-attack"> ATTACK </button>
+                <button @click="specialAttack" class="btn btn-special-attack"> SPECIAL ATTACK </button>
+                <button @click="heal" class="btn btn-heal"> HEAL </button>
+                <button @click="run" class="btn btn-run"> RUN </button>
             </div>
         </section>
-        <section class="container"> Log </section>
+        <section class="container log">
+            <template v-for="damage in damageLog">
+                <p class="log-text monster" > THE MONSTER HIT YOU: {{ damage.monster }}</p>
+                <p class="log-text player" > YOUR DAMAGE CAUSED: {{ damage.player }} </p>
+            </template>
+        </section>
     </div>
     <script src="app.js"></script>
 </body>

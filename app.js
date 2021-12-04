@@ -7,24 +7,38 @@ new Vue({
         barColorPlayer: "green",
         barColorMonster: "green",
         gameOverMSG: "",
-        gameOverColor: ""
+        gameOverColor: "",
+        damageLog: []
     },
     computed: {
         endGame() {
             if(this.healthPlayer <= 0) {
                 this.gameOverMSG = "Você Perdeu! =(";
                 this.gameOverColor = "red";
+                this.gameOn = false;
                 return true;
             } else if(this.healthMonster <= 0) {
                 this.gameOverMSG = "Você Ganhou! =)";
                 this.gameOverColor = "green";
+                this.gameOn = false;
                 return true;
             }
             return false;
         }
     },
     methods: {
+        reset() {
+            this.gameOn = false;
+            this.healthPlayer = 100;
+            this.healthMonster = 100;
+            this.barColorPlayer = "green";
+            this.barColorMonster = "green";
+            this.gameOverMSG = "";
+            this.gameOverColor = "";
+            this.damageLog = [];
+        },
         newGame() {
+            this.reset();
             this.gameOn = true;
         },
         getRandomInt(min, max) {
@@ -41,13 +55,38 @@ new Vue({
         getPlayerSpecialAttack() {
             return this.getRandomInt(8, 14);
         },
+        getPlayerHeal() {
+            return this.getRandomInt(8, 13);
+        },
         attack() {
-            this.healthMonster -= this.getPlayerAttack();
-            this.healthPlayer -= this.getMonsterAttack();
+            damagePlayer = this.getPlayerAttack();
+            damageMonster = this.getMonsterAttack();
+            this.damageLog.unshift({
+                "player": damagePlayer,
+                "monster": damageMonster
+            });            
+            this.healthMonster -= damagePlayer;
+            this.healthPlayer -= damageMonster;
         },
         specialAttack() {
-            this.healthMonster -= this.getPlayerSpecialAttack();
+            damagePlayer = this.getPlayerSpecialAttack();
+            damageMonster = this.getMonsterAttack();
+
+            this.damageLog.unshift({
+                "player": damagePlayer,
+                "monster": damageMonster
+            }); 
+
+            this.healthMonster -= damagePlayer
+            this.healthPlayer -= damageMonster
+             
+        },
+        heal() {
+            this.healthPlayer += this.getPlayerHeal();
             this.healthPlayer -= this.getMonsterAttack();
+        },
+        run() {
+            this.reset();
         }
     },
     watch: {

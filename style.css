@@ -51,3 +51,58 @@ html {
     margin: 0;
     font-size: 0.8rem;
 }
+
+.btn {
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    font-size: 0.5rem;
+    padding: 5px 30px;
+    font-weight: bold;
+}
+
+.btn-newgame {
+    color: white;
+    background-color: rgba(0, 0, 250, 0.8);
+}
+
+.btn-attack {
+    color: white;
+    background-color: rgba(250, 0, 0, 0.8);
+}
+
+.btn-special-attack {
+    background-color: rgba(255, 255, 0, 0.8);
+}
+
+.btn-heal {
+    background-color: rgba(0, 255, 0, 0.8);
+}
+
+.btn-run{
+    color: white;
+    background-color: grey;
+}
+
+.log {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-items: center;
+}
+
+.log-text {
+    margin: 0;
+    width: 80%;
+    text-align: center;
+    color: white;
+    box-sizing: border-box;
+    margin: 3px;
+}
+
+.log-text.monster{
+    background-color: rgba(250, 0, 0, 0.6);
+}
+.log-text.player{
+    background-color: rgba(0, 0, 250, 0.6);
+}
